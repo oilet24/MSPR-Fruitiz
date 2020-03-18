@@ -1,7 +1,10 @@
+-- FRUITIZ 
+
+--  Définition des tables
+
+
 CREATE DATABASE IF NOT EXISTS FRUITIZ DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE FRUITIZ;
-
-/* Création des tables */
 
 CREATE TABLE compte(
   id_use INT(10) AUTO_INCREMENT NOT NULL,
@@ -56,12 +59,12 @@ CREATE TABLE recette (
 CREATE TABLE historique (
   id_hist INT(10) AUTO_INCREMENT NOT NULL, 
   id_use INT(10) NOT NULL, 
-  date_hi DATE, 
+  date_hi DATE NOT NULL, 
   PRIMARY KEY (id_hist)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-/* Clé étrangère */
+-- Clé étrangère
 
 ALTER TABLE smoothie ADD FOREIGN KEY (id_rec) REFERENCES recipient (id_rec);
 ALTER TABLE smoothie ADD FOREIGN KEY (id_fru) REFERENCES fruit (id_fru);
