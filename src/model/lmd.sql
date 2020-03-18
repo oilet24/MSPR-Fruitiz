@@ -5,7 +5,7 @@
 -- table compte
 
 INSERT INTO compte (id_use, nm_use, mail_use, tel_use, adr_use, vil_use, mdp_use) VALUES
-(1, DJ_Polo, polo@crapier.dj, 320452587, 8 Boulevard de la liberté, Lille, DJ_Polo),
+(1, DJ_Polo, polo@crapier.dj, 320452587, 8 boulevard de la liberté, Lille, DJ_Polo),
 (2, WLZ, cyril@wlz.bg, 874565987, NULL, NULL, WLZ),
 (3, oilet24, telio@mysql.php, 65147793, 8 rue des  smoothies, Wasquehal, oilet24);
 
