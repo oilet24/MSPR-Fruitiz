@@ -1,95 +1,72 @@
-CREATE DATABASE IF NOT EXISTS `FRUITIZ` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `SMOOTHIES`;
+CREATE DATABASE IF NOT EXISTS FRUITIZ DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE FRUITIZ;
 
-CREATE TABLE `RECETTE` (
-  `nm_rec` VARCHAR(42),
-  `` VARCHAR(42),
-  PRIMARY KEY (`nm_rec`)
+/* Création des tables */
+
+CREATE TABLE compte(
+  id_use INT(10) AUTO_INCREMENT NOT NULL,
+  nm_use VARCHAR(10) NOT NULL,
+  mail_use VARCHAR(20) NOT NULL,
+  tel_use INT(12),
+  adr_use VARCHAR(42),
+  vil_use VARCHAR(20),
+  mdp_use VARCHAR(20) NOT NULL,
+  PRIMARY KEY (nm_use)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;C
+
+CREATE TABLE recipient (
+  id_rec INT(1) NOT NULL,
+  nm_rec VARCHAR(20),
+  PRIMARY KEY (id_rec)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `JUS` (
-  `nm_jus` VARCHAR(42),
-  `` VARCHAR(42),
-  PRIMARY KEY (`nm_jus`)
+CREATE TABLE fruit (
+  id_fru INT(5) AUTO_INCREMENT NOT NULL, 
+  nm_fru VARCHAR(20),
+  PRIMARY KEY (id_fru)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `SUPPLÉMENT` (
-  `nm_sup` VARCHAR(42),
-  `` VARCHAR(42),
-  PRIMARY KEY (`nm_sup`)
+CREATE TABLE jus (
+  id_jus INT(5) AUTO_INCREMENT NOT NULL, 
+  nm_jus VARCHAR(20),
+  PRIMARY KEY (id_jus)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `HÉRITÉ` (
-  `nm_rec` VARCHAR(42),
-  `prix` VARCHAR(42),
-  PRIMARY KEY (`nm_rec`, `prix`)
+CREATE TABLE supplement (
+  id_sup INT(5) AUTO_INCREMENT NOT NULL, 
+  nm_sup VARCHAR(20),
+  PRIMARY KEY (id_sup)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `SMOOTHIE` (
-  `prix` VARCHAR(42),
-  `` VARCHAR(42),
-  `taille` VARCHAR(42),
-  `nm_sup` VARCHAR(42),
-  `nm_jus` VARCHAR(42),
-  PRIMARY KEY (`prix`)
+CREATE TABLE smoothie (
+  id_smo INT(10) AUTO_INCREMENT NOT NULL, 
+  id_rec INT(3) NOT NULL,
+  id_fru INT(5) NOT NULL,
+  id_jus INT(5) NOT NULL,
+  id_sup INT(5),
+  PRIMARY KEY (id_smo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `EST_DEDANS` (
-  `nm_fru` VARCHAR(42),
-  `prix` VARCHAR(42),
-  `quantité` VARCHAR(42),
-  PRIMARY KEY (`nm_fru`, `prix`)
+CREATE TABLE recette (
+  id_rec INT(5) AUTO_INCREMENT NOT NULL, 
+  nm_rec VARCHAR(20),
+  PRIMARY KEY (id_rec)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `FRUIT` (
-  `nm_fru` VARCHAR(42),
-  `` VARCHAR(42),
-  PRIMARY KEY (`nm_fru`)
+CREATE TABLE historique (
+  id_hist INT(10) AUTO_INCREMENT NOT NULL, 
+  id_use INT(10) NOT NULL, 
+  date_hi DATE, 
+  PRIMARY KEY (id_hist)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `COMPTE` (
-  `nm_use` VARCHAR(42),
-  `pr_use` VARCHAR(42),
-  `mail_use` VARCHAR(42),
-  `tel_use` VARCHAR(42),
-  `adr_use` VARCHAR(42),
-  `vil_use` VARCHAR(42),
-  `mdp_use` VARCHAR(42),
-  PRIMARY KEY (`nm_use`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `RÉCIPIENT` (
-  `taille` VARCHAR(42),
-  `` VARCHAR(42),
-  PRIMARY KEY (`taille`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/* Clé étrangère */
 
-CREATE TABLE `DÉPEND` (
-  `date` VARCHAR(42),
-  `prix` VARCHAR(42),
-  PRIMARY KEY (`date`, `prix`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `HISTORIQUE` (
-  `date` VARCHAR(42),
-  `` VARCHAR(42),
-  PRIMARY KEY (`date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `CONNECTÉ` (
-  `date` VARCHAR(42),
-  `nm_use` VARCHAR(42),
-  PRIMARY KEY (`date`, `nm_use`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-ALTER TABLE `HÉRITÉ` ADD FOREIGN KEY (`prix`) REFERENCES `SMOOTHIE` (`prix`);
-ALTER TABLE `HÉRITÉ` ADD FOREIGN KEY (`nm_rec`) REFERENCES `RECETTE` (`nm_rec`);
-ALTER TABLE `SMOOTHIE` ADD FOREIGN KEY (`nm_jus`) REFERENCES `JUS` (`nm_jus`);
-ALTER TABLE `SMOOTHIE` ADD FOREIGN KEY (`nm_sup`) REFERENCES `SUPPLÉMENT` (`nm_sup`);
-ALTER TABLE `SMOOTHIE` ADD FOREIGN KEY (`taille`) REFERENCES `RÉCIPIENT` (`taille`);
-ALTER TABLE `EST_DEDANS` ADD FOREIGN KEY (`prix`) REFERENCES `SMOOTHIE` (`prix`);
-ALTER TABLE `EST_DEDANS` ADD FOREIGN KEY (`nm_fru`) REFERENCES `FRUIT` (`nm_fru`);
-ALTER TABLE `DÉPEND` ADD FOREIGN KEY (`prix`) REFERENCES `SMOOTHIE` (`prix`);
-ALTER TABLE `DÉPEND` ADD FOREIGN KEY (`date`) REFERENCES `HISTORIQUE` (`date`);
-ALTER TABLE `CONNECTÉ` ADD FOREIGN KEY (`nm_use`) REFERENCES `COMPTE` (`nm_use`);
-ALTER TABLE `CONNECTÉ` ADD FOREIGN KEY (`date`) REFERENCES `HISTORIQUE` (`date`);
+ALTER TABLE smoothie ADD FOREIGN KEY (id_rec) REFERENCES recipient (id_rec);
+ALTER TABLE smoothie ADD FOREIGN KEY (id_fru) REFERENCES fruit (id_fru);
+ALTER TABLE smoothie ADD FOREIGN KEY (id_jus) REFERENCES jus (id_jus);
+ALTER TABLE smoothie ADD FOREIGN KEY (id_sup) REFERENCES supplement (id_sup);
+ALTER TABLE recette ADD FOREIGN KEY (id_rec) REFERENCES smoothie (id_smo);
+ALTER TABLE historique ADD FOREIGN KEY (id_hist) REFERENCES smoothie (id_smo);
+ALTER TABLE historique ADD FOREIGN KEY (id_use) REFERENCES compte (id_use);
