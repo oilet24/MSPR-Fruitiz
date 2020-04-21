@@ -8,7 +8,7 @@ Le principe est de sélectionner un recipient, un fruit, un jus et si besoin un 
 
 ## Connexion
 
-Le fichiier connexxion.php contient est nécessaire à toute connexion avec la base de donnée de **Fruitiz**.
+Le fichier connexion.php contient est nécessaire à toute connexion avec la base de donnée de **Fruitiz**.
 Les paramètres de connexion à la base setrouve dans le fichier secret.php, disponible à la racine.
 
 ## Initialisation
