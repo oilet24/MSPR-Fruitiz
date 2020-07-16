@@ -1,8 +1,112 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 *{
     box-sizing: border-box;
 }
 
-form{
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.tenor-gif-embed{
+    margin-left: 24em;
+}
+
+#formu {
+    color: white;
+    font-size: large;
     border: 10px red;
-    background-color: red;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    box-shadow: black;
+    background-size: cover;
+    margin: 30em 5em;
+
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    margin: 5em 2em;
+}
+
+a:hover {
+    text-decoration: underline 2px red;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+form{
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 1.2em;
+    padding: 2em;
+}
+
+select {
+    border-radius: 10px;
+    border: 3px solid white;
+    padding: 0.4em;
+}
+
+input {
+    border-radius: 10px;
+    border: 3px solid white;
+    padding: 1em;
+    color: red;
+    line-height: 0.2em;
+}
+
+input:hover {
+    box-shadow: black;
+}
+
+header {
+    text-align: center;
+    margin-top: 2em;
+}
+
+header h1 {
+    text-align: left;
+    padding-bottom: 0.6em;
+    padding-top: 0px;
+    border-bottom: 4px solid red;
+}
+
+.footer {
+    line-height: 1em;
+	list-style: none;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 1.8em;
+}
+
+.footer #social {
+    margin-top: 2.6em;
+    margin-bottom: 1.4em;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+.footer #copy {
+    margin-top: 5em;
+    margin-right: 0.2em;
+    margin-bottom: 1.4em;
+    text-align: center;
+    font-weight: bold;
+}
+
+li{
+    border-left: solid 1px red;
+	display: inline-block;
+    padding-left: 1em;
+    margin-left: 1em;
+}
+
+.lou {
+    margin-right: 3.4em;
 }

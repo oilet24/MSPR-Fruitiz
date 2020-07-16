@@ -18,4 +18,5 @@ try {
     echo 'Échec lors de la connexion : ' . $e->getMessage();
 }
 
-?>
+
+  header('Location: ../index.php');
