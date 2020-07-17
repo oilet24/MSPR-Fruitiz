@@ -1,7 +1,7 @@
 <?php
 require_once "model/connexion.php";
 require_once "view/header.php";
-//require "controller/smoothie_form.php";
+
 //require "controller/sign_up_form.php";
 
 // Initialize the session
@@ -14,7 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 
 //require "controller/sign_up_form.php";
-
+require "controller/smoothie_form.php";
 //require "sign_in.php";
 require "view/footer.php";
 ?>
